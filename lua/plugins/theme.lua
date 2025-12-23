@@ -8,23 +8,28 @@ return {
 			-- 1. Create a clear highlight palette for JSX
 			local jsx_hl = {
 				-- Standard tags: <div>, <span>
-				["@tag.builtin.tsx"] = { fg = c.red },
-				["@tag.builtin.javascript"] = { fg = c.red },
+				["@tag.builtin.tsx"] = { fg = c.cyan },
+				["@tag.builtin.javascript"] = { fg = c.cyan },
+
+				["@markup.heading.1.tsx"] = { fg = c.white },
 
 				-- Custom Components: <MyComponent />
-				["@tag.tsx"] = { fg = c.red, bold = true },
-				["@tag.javascript"] = { fg = c.red, bold = true },
+				["@tag.tsx"] = { fg = c.blue, bold = true },
+				["@tag.javascript"] = { fg = c.blue, bold = true },
 
 				-- Brackets: <, >, </, />
 				["@tag.delimiter.tsx"] = { fg = c.blue5 },
 				["@tag.delimiter.javascript"] = { fg = c.blue5 },
 
 				-- Attributes: className, onClick
-				["@tag.attribute.tsx"] = { fg = c.cyan, italic = false },
-				["@tag.attribute.javascript"] = { fg = c.cyan, italic = false },
+				["@tag.attribute.tsx"] = { fg = c.yellow, italic = false },
+				["@tag.attribute.javascript"] = { fg = c.yellow, italic = false },
 
 				["@variable.tsx"] = { fg = c.magenta, italic = false },
 				["@variable.javascript"] = { fg = c.magenta, italic = false },
+
+				["@variable.parameter.tsx"] = { fg = c.magenta, italic = false },
+				["@variable.parameter.javascript"] = { fg = c.magenta, italic = false },
 
 				["@punctuation.bracket.tsx"] = { fg = c.magenta, italic = false },
 				["@punctuation.bracket.javascript"] = { fg = c.magenta, italic = false },
