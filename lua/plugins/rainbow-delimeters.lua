@@ -1,0 +1,41 @@
+return {
+	"hiphish/rainbow-delimiters.nvim",
+	config = function()
+		local rb = require("rainbow-delimiters")
+
+		vim.g.rainbow_delimiters = {
+			strategy = {
+				[""] = rb.strategy["global"],
+			},
+			query = {
+				[""] = "rainbow-delimiters",
+				lua = "rainbow-blocks",
+			},
+			highlight = {
+				"RainbowDelimiterRed",
+				"RainbowDelimiterYellow",
+				"RainbowDelimiterBlue",
+				"RainbowDelimiterOrange",
+				"RainbowDelimiterGreen",
+				"RainbowDelimiterViolet",
+				"RainbowDelimiterCyan",
+			},
+		}
+
+		-- Link the groups to TokyoNight's palette
+		local c = require("tokyonight.colors").setup()
+		local groups = {
+			RainbowDelimiterRed = { fg = c.red },
+			RainbowDelimiterYellow = { fg = c.yellow },
+			RainbowDelimiterBlue = { fg = c.blue },
+			RainbowDelimiterOrange = { fg = c.orange },
+			RainbowDelimiterGreen = { fg = c.green },
+			RainbowDelimiterViolet = { fg = c.purple },
+			RainbowDelimiterCyan = { fg = c.cyan },
+		}
+
+		for group, settings in pairs(groups) do
+			vim.api.nvim_set_hl(0, group, settings)
+		end
+	end,
+}

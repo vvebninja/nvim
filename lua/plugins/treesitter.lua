@@ -4,27 +4,19 @@ return {
 	opts = {
 		ensure_installed = {
 			"bash",
-			"diff",
 			"html",
 			"lua",
-			"luadoc",
 			"markdown",
-			"markdown_inline",
-			"query",
 			"vim",
-			"vimdoc",
-			"regex",
-			"norg",
-			"scss",
-			"svelte",
-			"typst",
+			"javascript",
+			"tsx",
+			"typescript",
 		},
-		-- Autoinstall languages that are not installed
-		auto_install = true,
 		highlight = {
 			enable = true,
-			additional_vim_regex_highlighting = { "ruby" },
+			-- Setting this to false prevents the "Syntax" engine
+			-- from fighting Tree-sitter for control.
+			additional_vim_regex_highlighting = false,
 		},
-		indent = { enable = true, disable = { "ruby" } },
 	},
 }

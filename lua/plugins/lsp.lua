@@ -6,14 +6,13 @@ return {
 		{
 			"williamboman/mason-lspconfig.nvim",
 			opts = {
-				-- IMPORTANT: List all the LSP servers you want Mason to install here!
 				ensure_installed = {
-					"ts_ls", -- Often preferred over 'ts_ls' for TypeScript LSP
-					"eslint", -- Use 'eslint' for ESLint LSP
+					"ts_ls",
+					"eslint",
 					"html",
 					"lua_ls",
 					"emmet_language_server",
-					"tailwindcss", -- If you want Tailwind CSS LSP features
+					"tailwindcss",
 				},
 				automatic_installation = true,
 			},
@@ -24,10 +23,9 @@ return {
 		{
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			opts = {
-				-- Keep tools like formatters and linters (that aren't LSPs themselves) here
 				ensure_installed = {
 					"stylua",
-					"prettierd", -- Prettier daemon, often used with a formatter plugin like conform.nvim
+					"prettierd",
 				},
 			},
 		},

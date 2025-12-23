@@ -16,3 +16,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*.tsx", "*.jsx" },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
