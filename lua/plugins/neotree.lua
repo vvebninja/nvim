@@ -45,7 +45,7 @@ return {
 		enable_git_status = false,
 		enable_diagnostics = true,
 		window = {
-			position = "left", -- Ensures consistent opening position
+			position = "right", -- Ensures consistent opening position
 			width = 35, -- Your adjusted width
 		},
 	},

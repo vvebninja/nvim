@@ -26,3 +26,7 @@ vim.cmd("highlight Cursor guifg=NONE guibg=#FF284D")
 vim.cmd("highlight iCursor guifg=NONE guibg=#00ff00")
 vim.cmd("highlight rCursor guifg=NONE guibg=#FF0000")
 -- vim.cmd("highlight Normal guibg=NONE")
+--
+if vim.fn.executable("fish") == 1 then
+    vim.opt.shell = "fish"
+end

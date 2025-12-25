@@ -1,53 +1,39 @@
-vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+-- 1. LSP / VTSLS (The Senior FE Toolkit)
+-- Use 'vtsls' specific commands for better refactoring
+vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "LSP: Floating diagnostic" })
+vim.keymap.set("n", "ca", "<cmd>VtslsCommand code_action_all<CR>", { desc = "VTSLS: Source Actions" })
+vim.keymap.set("n", "<leader>mi", "<cmd>VtslsCommand add_missing_imports<CR>", { desc = "VTSLS: Add Missing Imports" })
+vim.keymap.set("n", "<leader>rf", "<cmd>VtslsCommand rename_file<CR>", { desc = "VTSLS: Rename File" })
+vim.keymap.set("n", "<leader>or", "<cmd>VtslsCommand organize_imports<CR>", { desc = "VTSLS: Organize Imports" })
 
-vim.keymap.set("n", "ca", "<cmd>LspTypescriptSourceAction<CR>", { desc = "Run LspTypescriptSourceAction Command" })
-vim.keymap.set("n", "<leader>d", "<cmd>Todo<CR>", { desc = "Run Todo Command" })
+-- 2. Navigation & Scrolling
+-- Keep scrolling (C-j/k) and window movement (C-h/l/d/u) distinct
+vim.keymap.set("n", "<C-j>", "<C-d>zz", { desc = "Scroll Down" })
+vim.keymap.set("n", "<C-k>", "<C-u>zz", { desc = "Scroll Up" })
 
-vim.keymap.set("n", "<C-j>", "<C-d>zz")
-vim.keymap.set("n", "<C-k>", "<C-u>zz")
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+-- Window Movement (Using C-w prefix or direct maps)
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move focus Left" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move focus Right" })
+vim.keymap.set("n", "<C-d>", "<C-w>j", { desc = "Move focus Down" })
+vim.keymap.set("n", "<C-u>", "<C-w>k", { desc = "Move focus Up" })
 
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-d>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-u>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- 3. Search & Utilities
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
+vim.keymap.set("n", "<leader>d", "<cmd>TodoTelescope<CR>", { desc = "Find TODOs" }) -- Assuming you use Telescope
 
-vim.keymap.set("n", "qq", ":q<CR>", { desc = "Quick quit" })
-vim.keymap.set("n", "Q", ":q!<CR>", { desc = "Force quit" })
+-- 4. Quick Exit
+vim.keymap.set("n", "qq", "<cmd>q<CR>", { desc = "Quick quit" })
+vim.keymap.set("n", "Q", "<cmd>qa!<CR>", { desc = "Force quit all" }) -- qa! is safer for monorepos
 
---Terminal toggle
-vim.keymap.set("n", "<leader>t", "<cmd>1ToggleTerm direction=float<cr>", { desc = "Toggle Default Floating Terminal" })
-vim.keymap.set(
-	"t",
-	"<leader>t",
-	"<cmd>1ToggleTerm direction=float<cr>",
-	{ desc = "Toggle Default Floating Terminal (from within term)" }
-)
+-- 5. Terminal (ToggleTerm)
+local function toggle_term(id, dir, size)
+	return string.format("<cmd>%dToggleTerm direction=%s size=%s<CR>", id, dir, size or "nil")
+end
 
-vim.keymap.set(
-	"n",
-	"<leader>gv",
-	"<cmd>2ToggleTerm size=70% direction=vertical<cr>",
-	{ desc = "Toggle Vertical Split Term (50% width)" }
-)
-vim.keymap.set(
-	"t",
-	"<leader>gv",
-	"<cmd>2ToggleTerm size=70% direction=vertical<cr>",
-	{ desc = "Toggle Vertical Split Term (from within term)" }
-)
+vim.keymap.set({ "n", "t" }, "<leader>t", toggle_term(1, "float"), { desc = "Toggle Floating Term" })
+vim.keymap.set({ "n", "t" }, "<leader>gv", toggle_term(2, "vertical", "70"), { desc = "Toggle Vertical Term" })
+vim.keymap.set({ "n", "t" }, "<leader>gh", toggle_term(3, "horizontal", "50"), { desc = "Toggle Horizontal Term" })
+vim.keymap.set("n", "<leader>ga", "<cmd>ToggleTermToggleAll<cr>", { desc = "Toggle All Terms" })
 
-vim.keymap.set(
-	"n",
-	"<leader>gh",
-	"<cmd>3ToggleTerm size=50% direction=horizontal<cr>",
-	{ desc = "Toggle Horizontal Split Term (50% height)" }
-)
-vim.keymap.set(
-	"t",
-	"<leader>gh",
-	"<cmd>3ToggleTerm size=80% direction=horizontal<cr>",
-	{ desc = "Toggle Horizontal Split Term (from within term)" }
-)
-vim.keymap.set("n", "<leader>ga", "<cmd>ToggleTermToggleAll<cr>", { desc = "Toggle All Terminals" })
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit Terminal Mode" })
+-- Better terminal escape (prevents delay in apps like lazygit)
+vim.keymap.set("t", "<C-Esc>", [[<C-\><C-n>]], { desc = "Exit Terminal Mode" })

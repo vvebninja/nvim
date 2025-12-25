@@ -24,8 +24,13 @@ return {
 				["@tag.attribute.tsx"] = { fg = c.blue5, italic = false },
 				["@tag.attribute.javascript"] = { fg = c.blue5, italic = false },
 
-				-- Variables: className
+				-- Keyword conditional: if/else
+				["@keyword.conditional.tsx"] = { fg = c.blue5, italic = false },
+
+				-- Variables: var name
 				["@variable.tsx"] = { fg = c.purple, italic = false },
+				["@lsp.type.variable"] = { fg = c.purple, italic = false },
+				["@lsp.mod.declaration.typescript"] = { fg = c.purple, italic = false },
 				["@variable.javascript"] = { fg = c.purple, italic = false },
 
 				-- Function parameter: className, onClick
@@ -35,6 +40,14 @@ return {
 				-- Punctuation bracket: {}, []
 				["@punctuation.bracket.tsx"] = { fg = c.purple, italic = false },
 				["@punctuation.bracket.javascript"] = { fg = c.purple, italic = false },
+
+				-- Markup heading: h1/h6
+				["@markup.heading.1.tsx"] = { fg = c.white, italic = false },
+				["@markup.heading.2.tsx"] = { fg = c.white, italic = false },
+				["@markup.heading.3.tsx"] = { fg = c.white, italic = false },
+				["@markup.heading.4.tsx"] = { fg = c.white, italic = false },
+				["@markup.heading.5.tsx"] = { fg = c.white, italic = false },
+				["@markup.heading.6.tsx"] = { fg = c.white, italic = false },
 			}
 
 			for group, settings in pairs(jsx_hl) do
@@ -47,3 +60,10 @@ return {
 		vim.cmd.colorscheme("tokyonight-night")
 	end,
 }
+
+-- lsp.type.variable.typescript links to    priority: 125
+--  @lsp.mod.declaration.typescript links to @lsp   priority: 126
+-- ~                                                  - @lsp.mod.local.typescript links to @lsp   priority: 126
+-- ~                                                  - @lsp.mod.readonly.typescript links to @lsp   priority: 126
+-- ~                                                  - @lsp.typemod.variable.declaration.typescript links to @lsp   priority: 127
+-- ~                                                  - @lsp.typemod.variable.local.typescript li
