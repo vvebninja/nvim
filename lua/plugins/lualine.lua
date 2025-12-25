@@ -5,7 +5,6 @@ return {
 	config = function()
 		local lualine = require("lualine")
 
-		-- 🎨 High Cohesion: Define how diagnostics look in one place
 		local diagnostics = {
 			"diagnostics",
 			sources = { "nvim_diagnostic" },
@@ -16,7 +15,6 @@ return {
 			always_visible = false,
 		}
 
-		-- ⚙️ Low Coupling: Function to get active LSP name
 		local lsp_status = function()
 			local msg = "No Active LSP"
 			local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
@@ -35,16 +33,16 @@ return {
 
 		lualine.setup({
 			options = {
-				theme = "auto", -- Automatically matches your colorscheme
+				theme = "auto",
 				component_separators = { left = "│", right = "│" },
 				section_separators = { left = "", right = "" },
-				globalstatus = true, -- Pro: One statusline for all splits
+				globalstatus = true,
 				disabled_filetypes = { statusline = { "dashboard", "alpha", "NvimTree" } },
 			},
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff" },
-				lualine_c = { { "filename", path = 1 } }, -- Path = 1 shows relative path (Pro for monorepos)
+				lualine_c = { { "filename", path = 1 } },
 				lualine_x = {
 					diagnostics,
 					{ lsp_status, icon = " ", color = { fg = "#ffffff", gui = "bold" } },

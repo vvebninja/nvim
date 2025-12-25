@@ -1,4 +1,4 @@
--- lua/plugins/formatting.lua
+-- lua/plugins/conform.lua
 return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
@@ -14,7 +14,6 @@ return {
 		},
 	},
 	opts = function()
-		-- 💡 High Cohesion: Grouping similar concerns
 		local prettier_langs = {
 			"javascript",
 			"typescript",
@@ -34,7 +33,6 @@ return {
 			lua = { "stylua" },
 		}
 
-		-- Automatically assign prettierd to all web langs
 		for _, lang in ipairs(prettier_langs) do
 			formatters_by_ft[lang] = { "prettierd", "prettier", stop_after_first = true }
 		end
@@ -43,10 +41,8 @@ return {
 			notify_on_error = false,
 			formatters_by_ft = formatters_by_ft,
 			format_on_save = function(bufnr)
-				-- 💡 Low Coupling: Logic to bypass formatting
 				local disable_filetypes = { c = true, cpp = true }
-				
-				-- Pro Tip: Ignore formatting if the file is in node_modules
+
 				local bufname = vim.api.nvim_buf_get_name(bufnr)
 				if bufname:match("/node_modules/") then
 					return
@@ -57,7 +53,7 @@ return {
 				end
 
 				return {
-					timeout_ms = 1000, -- Increased slightly for heavy TS files
+					timeout_ms = 1000,
 					lsp_format = "fallback",
 				}
 			end,

@@ -11,9 +11,11 @@ vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem reveal right toggle<cr
 vim.keymap.set("x", "<leader>re", function()
 	require("refactoring").refactor("Extract Function")
 end, { desc = "Extract Function" })
+
 vim.keymap.set("x", "<leader>rf", function()
 	require("refactoring").refactor("Extract Function To File")
 end, { desc = "Extract To File" })
+
 vim.keymap.set("x", "<leader>rv", function()
 	require("refactoring").refactor("Extract Variable")
 end, { desc = "Extract Variable" })
