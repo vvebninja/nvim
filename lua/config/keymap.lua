@@ -9,25 +9,25 @@ vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem reveal right toggle<cr
 
 -- Extract function/variable (Visual Mode)
 vim.keymap.set("x", "<leader>re", function()
-	require("refactoring").refactor("Extract Function")
+  require("refactoring").refactor("Extract Function")
 end, { desc = "Extract Function" })
 
 vim.keymap.set("x", "<leader>rf", function()
-	require("refactoring").refactor("Extract Function To File")
+  require("refactoring").refactor("Extract Function To File")
 end, { desc = "Extract To File" })
 
 vim.keymap.set("x", "<leader>rv", function()
-	require("refactoring").refactor("Extract Variable")
+  require("refactoring").refactor("Extract Variable")
 end, { desc = "Extract Variable" })
 
 -- Inline variable (Normal Mode)
 vim.keymap.set("n", "<leader>ri", function()
-	require("refactoring").refactor("Inline Variable")
+  require("refactoring").refactor("Inline Variable")
 end, { desc = "Inline Variable" })
 
 -- This opens a Snacks-like menu to pick which refactor you want
 vim.keymap.set({ "n", "x" }, "<leader>rr", function()
-	require("refactoring").select_refactor()
+  require("refactoring").select_refactor()
 end, { desc = "Refactor Menu" })
 
 -- Hover and Rename
