@@ -6,9 +6,19 @@ return {
     style = "night",
     on_highlights = function(hl, c)
       local jsx_hl = {
+        ["typescriptTypeBracket"] = { fg = c.blue2, italic = false },
 
+        ["typescriptStatementKeyword"] = { fg = c.red, italic = false },
+        ["typescriptImport"] = { fg = c.blue7, italic = false },
+        ["typescriptDefaultImportName"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptBlock"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptTypeBlock"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptIdentifierName"] = { fg = c.fg_sidebar, italic = false },
         ["@lsp.type.parameter.typescriptreact"] = { fg = c.blue2, italic = false },
-        ["tsxRegion"] = { fg = c.fg_dark, italic = false },
+
+        ["tsxRegion"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptParens"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptBinaryOp"] = { fg = c.fg_sidebar, italic = false },
         ["@lsp.type.property.typescriptreact"] = { fg = c.fg_sidebar, italic = false },
         ["typescriptBOMHistoryProp"] = { fg = c.fg_sidebar, italic = false },
         ["typescriptDOMFormProp"] = { fg = c.fg_sidebar, italic = false },
