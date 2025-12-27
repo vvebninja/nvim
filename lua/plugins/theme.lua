@@ -6,50 +6,89 @@ return {
     style = "night",
     on_highlights = function(hl, c)
       local jsx_hl = {
-        -- Standard tags: <div>, <span>
-        ["@tag.builtin.tsx"] = { fg = c.blue },
-        ["@tag.builtin.javascript"] = { fg = c.blue },
 
-        ["@markup.heading.1.tsx"] = { fg = c.white },
+        ["@lsp.type.parameter.typescriptreact"] = { fg = c.blue2, italic = false },
+        ["tsxRegion"] = { fg = c.fg_dark, italic = false },
+        ["@lsp.type.property.typescriptreact"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptBOMHistoryProp"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptDOMFormProp"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptFuncCallArg"] = { fg = c.fg_sidebar, italic = false },
+        ["@lsp.typemod.property.defaultLibrary.typescriptreact"] = { fg = c.fg_sidebar, italic = false },
+        ["@lsp.mod.defaultLibrary.typescriptreact"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptPaymentShippingOptionProp"] = { fg = c.fg_sidebar, italic = false },
+        ["tsxEscJs"] = { fg = c.fg_sidebar, italic = false },
+        ["tsxEscapeJs"] = { fg = c.fg_sidebar, italic = false },
+        ["typescriptComputedPropertyName"] = { fg = c.fg_sidebar, italic = false },
 
-        -- Custom Components: <MyComponent />
-        ["@tag.tsx"] = { fg = c.blue, bold = true },
-        ["@tag.javascript"] = { fg = c.blue, bold = true },
+        -- 🍎 HTML / INTRINSIC (Red)
+        ["@tag.builtin"] = { fg = c.red },
+        ["tsxIntrinsicTagName"] = { fg = c.red },
+        ["tsxFragment"] = { fg = c.red },
+        ["@tag.delimiter"] = { fg = c.red }, -- Default brackets to Red (HTML fallback)
+        ["tsxCloseTag"] = { fg = c.red },
+        ["tsxCloseString"] = { fg = c.red },
 
-        -- Brackets: <, >, </, />
-        ["@tag.delimiter.tsx"] = { fg = c.blue },
-        ["@tag.delimiter.javascript"] = { fg = c.blue },
-        -- Attributes: className, onClick
-        ["@tag.attribute.tsx"] = { fg = c.blue, italic = false },
-        ["@tag.attribute.javascript"] = { fg = c.blue5, italic = false },
-        ["@lsp.typemod.method.defaultLibrary.typescriptreact"] = { fg = c.blue, italic = false },
-        ["@lsp.type.method.typescriptreact"] = { fg = c.blue, italic = false },
+        -- 💙 COMPONENTS (teal)
+        ["@tag"] = { fg = c.blue }, -- The Component Name (Bold for pop)
+        ["tsxTagName"] = { fg = c.blue },
+        ["tsxTag"] = { fg = c.red }, -- Opening tag container
+        ["tsxCloseString"] = { fg = c.blue },
+        ["@tag.delimiter.tsx"] = { fg = c.blue }, -- Brackets for components
+        ["@tag.tsx"] = { fg = c.blue },
+        ["@punctuation.special.tsx"] = { fg = c.blue },
 
-        -- Keyword conditional: if/else
-        ["@keyword.conditional.tsx"] = { fg = c.blue5, italic = false },
+        -- 💎 VARIABLES & PARAMS (The "Hint" Teal)
+        ["@variable"] = { fg = c.purple },
+        ["@variable.builtin"] = { fg = c.hint },
+        ["@variable.parameter"] = { fg = c.magenta }, -- Kept magenta to separate logic from data
+        ["@variable.member"] = { fg = c.blue1 }, -- Object properties
 
-        -- Variables: var name
-        ["@variable.tsx"] = { fg = c.purple, italic = false },
-        ["@lsp.type.variable"] = { fg = c.purple, italic = false },
-        ["@lsp.mod.declaration.typescript"] = { fg = c.purple, italic = false },
-        ["@variable.javascript"] = { fg = c.purple, italic = false },
+        ["typescriptProp"] = { fg = c.error }, -- 'const', 'let', 'var'
+        ["tsxEscJs"] = { fg = c.grey }, -- 'const', 'let', 'var'
+        -- 🔑 KEYWORDS (Purple)
+        ["@keyword"] = { fg = c.purple, italic = false },
+        ["typescriptVariable"] = { fg = c.purple }, -- 'const', 'let', 'var'
 
-        -- Function parameter:
-        ["@variable.parameter.tsx"] = { fg = c.magenta, italic = false },
-        ["@variable.parameter.javascript"] = { fg = c.magenta, italic = false },
+        -- 🧪 ATTRIBUTES (Orange)
+        ["tsxAttrib"] = { fg = c.yellow },
+        ["@tag.attribute"] = { fg = c.yellow },
 
-        -- Punctuation bracket: {}, []
-        ["@punctuation.bracket.tsx"] = { fg = c.purple, italic = false },
-        ["@punctuation.bracket.javascript"] = { fg = c.purple, italic = false },
+        -- 📍 PUNCTUATION & SYMBOLS
+        ["@punctuation.bracket"] = { fg = c.purple }, -- { } [ ] ( )
+        ["@punctuation.delimiter"] = { fg = c.fg_gutter }, -- , .
 
-        -- Markup heading: h1/h6
-        ["@markup.heading.1.tsx"] = { fg = c.white, italic = false },
-        ["@markup.heading.2.tsx"] = { fg = c.white, italic = false },
-        ["@markup.heading.3.tsx"] = { fg = c.white, italic = false },
-        ["@markup.heading.4.tsx"] = { fg = c.white, italic = false },
-        ["@markup.heading.5.tsx"] = { fg = c.white, italic = false },
-        ["@markup.heading.6.tsx"] = { fg = c.white, italic = false },
-        ["@lsp.type.parameter.typescriptreact"] = { fg = c.hint },
+        -- 🛡️ LSP & LANGUAGE SYNC (Low Coupling)
+        -- We link these so we don't have to define colors twice
+        ["@lsp.type.variable"] = { link = "@variable" },
+        ["@lsp.type.parameter"] = { link = "@variable.parameter" },
+        ["@lsp.type.property"] = { link = "@variable.member" },
+        ["@lsp.type.tag"] = { link = "@tag" },
+        ["@variable.javascript"] = { link = "@variable" },
+        ["@variable.tsx"] = { link = "@variable" },
+        ["@punctuation.bracket.tsx"] = { link = "@punctuation.bracket" },
+
+        -- ... (keep your previous Tag and Variable logic here)
+
+        -- 🔵 FUNCTIONS & METHODS (The "Action" Blue)
+        ["@function"] = { fg = c.blue },
+        ["@function.builtin"] = { fg = c.blue },
+        ["@function.call"] = { fg = c.blue },
+        ["@method"] = { fg = c.blue },
+        ["@method.call"] = { fg = c.blue },
+
+        -- 🛡️ LSP SYNC: Link LSP tokens to the Tree-sitter source
+        -- This is Low Coupling: change @function, and the LSP follows automatically.
+        ["@lsp.type.function"] = { link = "@function" },
+        ["@lsp.type.method"] = { link = "@method" },
+
+        -- Special case for TSX/React methods (like array.map, etc.)
+        ["typescriptArrayMethod"] = { link = "@method" },
+        ["@lsp.typemod.method.defaultLibrary.typescriptreact"] = { link = "@method" },
+
+        ["@tag.html.red"] = { fg = c.red },
+        ["@punctuation.bracket.tag.red"] = { fg = c.red },
+        ["@constructor.teal"] = { fg = c.hint },
+        ["@punctuation.bracket.tag.teal"] = { fg = c.hint },
       }
 
       for group, settings in pairs(jsx_hl) do

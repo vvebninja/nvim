@@ -9,13 +9,14 @@ return {
       "markdown",
       "vim",
       "javascript",
+      "ts",
       "tsx",
       "typescript",
     },
+    sync_install = false,
+    auto_install = true,
     highlight = {
       enable = true,
-      -- Setting this to false prevents the "Syntax" engine
-      -- from fighting Tree-sitter for control.
       additional_vim_regex_highlighting = false,
     },
   },
