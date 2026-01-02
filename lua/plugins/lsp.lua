@@ -1,4 +1,3 @@
--- File: ~/.config/nvim/lua/plugins/lsp.lua
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -7,14 +6,9 @@ return {
     "onsails/lspkind.nvim",
     { "williamboman/mason.nvim", opts = {} },
     "williamboman/mason-lspconfig.nvim",
-    {
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-      opts = { ensure_installed = { "stylua", "prettierd", "eslint_d" } },
-    },
   },
   config = function()
     local lspconfig = require("lspconfig")
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     local shared_on_attach = function(client)
       if client.name == "vtsls" then
@@ -25,8 +19,18 @@ return {
     local servers = {
       vtsls = {
         settings = {
+          vtsls = {
+            experimental = {
+              completion = {
+                enableServerSideFuzzyMatch = true,
+              },
+            },
+          },
           typescript = {
             updateImportsOnFileMove = { enabled = "always" },
+            suggest = {
+              completeFunctionCalls = true,
+            },
             inlayHints = {
               parameterNames = { enabled = "literals" },
               variableTypes = { enabled = true },
@@ -46,7 +50,9 @@ return {
       handlers = {
         function(server_name)
           local server_opts = servers[server_name] or {}
-          server_opts.capabilities = capabilities
+
+          -- ⚡ Properly inject blink capabilities
+          server_opts.capabilities = require("blink.cmp").get_lsp_capabilities(server_opts.capabilities)
           server_opts.on_attach = shared_on_attach
 
           lspconfig[server_name].setup(server_opts)
@@ -58,16 +64,24 @@ return {
     -- See :help vim.diagnostic.Opts
     vim.diagnostic.config({
       severity_sort = true,
-      float = { border = "rounded", source = "if_many" },
+      float = {
+        border = "rounded", -- Modern rounded corners
+        source = "always", -- Shows if it's from 'vtsls', 'eslint', etc.
+        header = "", -- Removes the "Diagnostics:" header for a cleaner look
+        prefix = "",
+        focusable = true, -- 💡 Allows you to press 'gl' again to enter and scroll
+        max_width = 80, -- Keeps long errors from spanning the whole screen
+      },
       underline = { severity = vim.diagnostic.severity.ERROR },
-      signs = vim.g.have_nerd_font and {
+      -- 💡 Removed the 'vim.g.have_nerd_font' check to force icons back
+      signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = "󰅚 ",
           [vim.diagnostic.severity.WARN] = "󰀪 ",
           [vim.diagnostic.severity.INFO] = "󰋽 ",
           [vim.diagnostic.severity.HINT] = "󰌶 ",
         },
-      } or {},
+      },
       virtual_text = {
         source = "if_many",
         spacing = 2,

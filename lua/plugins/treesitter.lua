@@ -9,7 +9,6 @@ return {
       "markdown",
       "vim",
       "javascript",
-      "ts",
       "tsx",
       "typescript",
     },

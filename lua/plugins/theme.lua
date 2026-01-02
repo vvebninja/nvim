@@ -6,9 +6,15 @@ return {
     style = "night",
     on_highlights = function(hl, c)
       local jsx_hl = {
+        ["@lsp.typemod.property.declaration.typescriptreact"] = { fg = c.blue2, italic = false },
         ["typescriptTypeBracket"] = { fg = c.blue2, italic = false },
+        ["typescriptAliasKeyword"] = { fg = c.blue2, italic = false },
+        ["typescriptObjectType"] = { fg = c.blue2, italic = false },
+        ["typescriptObjectMember"] = { fg = c.blue2, italic = false },
+        ["typescriptInterfaceKeyword"] = { fg = c.blue2, italic = false },
         ["typescriptCall"] = { fg = c.blue, italic = false },
         ["typescriptExport"] = { fg = c.purple, italic = false },
+        ["typescriptConditional"] = { fg = c.purple, italic = false },
         ["typescriptParens"] = { fg = c.blue, italic = false },
 
         ["typescriptStatementKeyword"] = { fg = c.red, italic = false },
@@ -20,7 +26,7 @@ return {
         ["typescriptFuncTypeArrow"] = { fg = c.fg_sidebar, italic = false },
         ["typescriptTypeBlock"] = { fg = c.fg_sidebar, italic = false },
         ["typescriptIdentifierName"] = { fg = c.fg_sidebar, italic = false },
-        ["@lsp.type.parameter.typescriptreact"] = { fg = c.fg_sidebar, italic = false },
+        ["@lsp.type.parameter.typescriptreact"] = { fg = c.purple, italic = false },
 
         ["tsxRegion"] = { fg = c.fg_sidebar, italic = false },
         ["typescriptBinaryOp"] = { fg = c.fg_sidebar, italic = false },
@@ -49,7 +55,6 @@ return {
         ["@tag"] = { fg = c.blue }, -- The Component Name (Bold for pop)
         ["tsxTagName"] = { fg = c.blue },
         ["tsxTag"] = { fg = c.red }, -- Opening tag container
-        ["tsxCloseString"] = { fg = c.blue },
         ["@tag.delimiter.tsx"] = { fg = c.blue }, -- Brackets for components
         ["@tag.tsx"] = { fg = c.blue },
         ["@punctuation.special.tsx"] = { fg = c.blue },
@@ -90,8 +95,8 @@ return {
         ["@function"] = { fg = c.blue },
         ["@function.builtin"] = { fg = c.blue },
         ["@function.call"] = { fg = c.blue },
-        ["@method"] = { fg = c.blue },
-        ["@method.call"] = { fg = c.blue },
+        ["@method"] = { fg = c.blue, italic = true },
+        ["@method.call"] = { fg = c.blue, italic = true },
 
         -- 🛡️ LSP SYNC: Link LSP tokens to the Tree-sitter source
         -- This is Low Coupling: change @function, and the LSP follows automatically.
