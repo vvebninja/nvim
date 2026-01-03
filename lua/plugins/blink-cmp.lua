@@ -22,6 +22,9 @@ return {
 
     -- 💎 This section enables the preview window on the right
     completion = {
+      ghost_text = {
+        enabled = vim.g.ai_cmp,
+      },
       documentation = {
         auto_show = true, -- Shows documentation when moving through items
         auto_show_delay_ms = 200, -- Delay before showing to keep it snappy
@@ -34,6 +37,7 @@ return {
         border = "rounded",
         draw = {
           columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+          treesitter = { "lsp" },
         },
       },
     },
