@@ -53,7 +53,7 @@ return {
 
         -- 💙 COMPONENTS (teal)
         ["@tag"] = { fg = c.blue }, -- The Component Name (Bold for pop)
-        ["tsxTagName"] = { fg = c.blue },
+        ["tsxTagName"] = { fg = c.hint, bold = false },
         ["tsxTag"] = { fg = c.red }, -- Opening tag container
         ["@tag.delimiter.tsx"] = { fg = c.blue }, -- Brackets for components
         ["@tag.tsx"] = { fg = c.blue },

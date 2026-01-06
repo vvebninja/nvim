@@ -1,4 +1,3 @@
--- refactoring.lua
 return {
   "ThePrimeagen/refactoring.nvim",
   dependencies = {
@@ -7,7 +6,6 @@ return {
   },
   config = function()
     require("refactoring").setup({
-      -- This ensures that it uses the Snacks/telescope input UI
       prompt_func_return_type = {
         go = false,
         java = false,

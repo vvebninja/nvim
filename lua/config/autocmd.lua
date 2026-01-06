@@ -5,15 +5,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    if vim.fn.argc() == 1 then
-      local arg = vim.fn.argv()[1]
-      if vim.fn.isdirectory(arg) == 1 then
-        vim.cmd("enew")
-      end
-    end
-  end,
-})
-

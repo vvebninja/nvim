@@ -2,7 +2,7 @@ return {
   "okuuva/auto-save.nvim",
   opts = {
     trigger_events = {
-      immediate_save = { "BufLeave", "FocusLost", "QuitPre", "VimSuspend" },
+      -- immediate_save = { "BufLeave", "FocusLost", "QuitPre", "VimSuspend" },
       defer_save = { "TextChanged", "TextChangedI" },
     },
     debounce_delay = 3000,

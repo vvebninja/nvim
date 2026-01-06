@@ -6,9 +6,9 @@ return {
     "L3MON4D3/LuaSnip",
     "folke/lazydev.nvim",
     "rafamadriz/friendly-snippets", -- 💎 Added the snippet collection
+    "folke/noice.nvim",
   },
   opts = {
-    -- 'default' for 0.x, 'enter' or 'super-tab' for 1.x
     keymap = {
       preset = "enter",
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
@@ -22,21 +22,24 @@ return {
 
     -- 💎 This section enables the preview window on the right
     completion = {
-      ghost_text = {
-        enabled = vim.g.ai_cmp,
-      },
       documentation = {
         auto_show = true, -- Shows documentation when moving through items
         auto_show_delay_ms = 200, -- Delay before showing to keep it snappy
         window = {
-          border = "rounded", -- Matches your LSP diagnostic theme
+          border = "rounded",
+          max_width = 80,
+          max_height = 20,
+          winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
         },
       },
       -- Optional: list settings to make the menu look cleaner
       menu = {
         border = "rounded",
         draw = {
-          columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+          columns = {
+            { "label" },
+            { "kind_icon", gap = 1, "kind" },
+          },
           treesitter = { "lsp" },
         },
       },
