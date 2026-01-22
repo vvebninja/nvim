@@ -1,35 +1,30 @@
--- lua/plugins/tabout.lua
 return {
   {
-    "abecodes/tabout.nvim",
-    -- 🚀 Pro Tip: Load on InsertEnter so it's ready exactly when you start typing
-    event = "InsertEnter",
+    'abecodes/tabout.nvim',
+    event = 'InsertEnter', -- Load when you start typing
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+      'nvim-treesitter/nvim-treesitter',
     },
-    config = function()
-      require("tabout").setup({
-        tabkey = "<Tab>",
-        backwards_tabkey = "<S-Tab>",
-        act_as_tab = true,
-        act_as_shift_tab = false,
-        default_tab = "<C-t>",
-        default_shift_tab = "<C-d>",
-        enable_backwards = true,
-        completion = false, -- We let blink.cmp handle completion
-        tabouts = {
-          { open = "'", close = "'" },
-          { open = '"', close = '"' },
-          { open = "`", close = "`" },
-          { open = "(", close = ")" },
-          { open = "[", close = "]" },
-          { open = "{", close = "}" },
-          -- Pro: Add JSX/TSX tags support
-          { open = "<", close = ">" },
-        },
-        ignore_beginning = true,
-        exclude = { "markdown" }, -- Tabbing out of quotes in markdown can be annoying
-      })
-    end,
+    opts = {
+      tabkey = '<Tab>', -- Key to tab out
+      backspace_tabkey = '<S-Tab>', -- Key to tab back
+      act_as_tab = true, -- Shift-tab inside empty pair still works as tab
+      act_as_shift_tab = false,
+      default_tab = '<C-t>', -- What to do if we aren't at a "tabout" point
+      default_shift_tab = '<C-d>',
+      enable_backwards = true,
+      completion = true, -- Set to true if you want it to work with autocomplete
+      tabouts = {
+        { open = "'", close = "'" },
+        { open = '"', close = '"' },
+        { open = '`', close = '`' },
+        { open = '(', close = ')' },
+        { open = '[', close = ']' },
+        { open = '{', close = '}' },
+        { open = '<', close = '>' }, -- Critical for your TSX tags!
+      },
+      ignore_beginning = true,
+      exclude = {},
+    },
   },
 }

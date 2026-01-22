@@ -1,30 +1,23 @@
--- File: ~/.config/nvim/lua/plugins/noice.lua
 return {
-  "folke/noice.nvim",
-  event = "VeryLazy",
-  dependencies = { "MunifTanjim/nui.nvim" },
+  'folke/noice.nvim',
+  event = 'VeryLazy',
+  dependencies = {
+    'hrsh7th/nvim-cmp',
+  },
   opts = {
     lsp = {
-      hover = { enabled = true },
-      signature = { enabled = true },
-      -- ⚡ This overrides the internal markdown styling
       override = {
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
+        ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+        ['vim.lsp.util.stylize_markdown'] = true,
+        ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
       },
     },
     presets = {
-      lsp_doc_border = true, -- 💎 Forces the rounded border
-    },
-    views = {
-      hover = {
-        border = {
-          style = "rounded", -- 💎 Rounded corners
-          padding = { 1, 2 }, -- 💡 Padding makes it look premium
-        },
-        position = { row = 2, col = 2 },
-        size = { max_width = 80 },
-      },
+      bottom_search = false, -- use a classic bottom cmdline for search
+      command_palette = true, -- position the cmdline and popupmenu together
+      long_message_to_split = true, -- long messages will be sent to a split
+      inc_rename = true, -- enables an input dialog for inc-rename.nvim
+      lsp_doc_border = true, -- add a border to hover docs and signature help
     },
   },
 }

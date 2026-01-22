@@ -1,62 +1,45 @@
--- lua/plugins/conform.lua
-return {
-  "stevearc/conform.nvim",
-  event = { "BufWritePre" },
-  cmd = { "ConformInfo" },
-  keys = {
-    {
-      "<leader>f",
-      function()
-        require("conform").format({ async = true, lsp_format = "fallback" })
-      end,
-      mode = { "n", "v" }, -- Added visual mode for formatting blocks
-      desc = "Format buffer or selection",
-    },
-  },
-  opts = function()
-    local prettier_langs = {
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-      "vue",
-      "css",
-      "scss",
-      "less",
-      "html",
-      "json",
-      "yaml",
-      "markdown",
-    }
-
-    local formatters_by_ft = {
-      lua = { "stylua" },
-    }
-
-    for _, lang in ipairs(prettier_langs) do
-      formatters_by_ft[lang] = { "prettierd", "prettier", stop_after_first = true }
-    end
-
-    return {
-      notify_on_error = false,
-      formatters_by_ft = formatters_by_ft,
-      format_on_save = function(bufnr)
-        local disable_filetypes = { c = true, cpp = true }
-
-        local bufname = vim.api.nvim_buf_get_name(bufnr)
-        if bufname:match("/node_modules/") then
-          return
-        end
-
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          return
-        end
-
-        return {
-          timeout_ms = 500,
-          lsp_format = "fallback",
-        }
-      end,
-    }
-  end,
+return { -- Autoformat
+	"stevearc/conform.nvim",
+	event = { "BufWritePre" },
+	cmd = { "ConformInfo" },
+	keys = {
+		{
+			"<leader>f",
+			function()
+				require("conform").format({ async = true, lsp_format = "fallback" })
+			end,
+			mode = "",
+			desc = "[F]ormat buffer",
+		},
+	},
+	opts = {
+		notify_on_error = false,
+		format_on_save = function(bufnr)
+			-- Disable "format_on_save lsp_fallback" for languages that don't
+			-- have a well standardized coding style. You can add additional
+			-- languages here or re-enable it for the disabled ones.
+			local disable_filetypes = { c = true, cpp = true }
+			if disable_filetypes[vim.bo[bufnr].filetype] then
+				return nil
+			else
+				return {
+					timeout_ms = 500,
+					lsp_format = "fallback",
+				}
+			end
+		end,
+		formatters_by_ft = {
+			lua = { "stylua" },
+			scss = { "prettierd" },
+			json = { "prettierd" },
+			jsonc = { "prettierd" },
+			typescript = { "prettierd", "prettier", stop_after_first = true },
+			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+			-- Conform can also run multiple formatters sequentially
+			-- python = { "isort", "black" },
+			--
+			-- You can use 'stop_after_first' to run the first available formatter from the list
+			-- javascript = { "prettierd", "prettier", stop_after_first = true },
+		},
+	},
 }
