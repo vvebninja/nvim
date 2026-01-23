@@ -17,7 +17,6 @@ return {
 				["typescriptConditional"] = { fg = c.purple, italic = false },
 				["typescriptParens"] = { fg = c.blue, italic = false },
 
-				["typescriptStatementKeyword"] = { fg = c.red, italic = false },
 				["typescriptImport"] = { fg = c.blue2, italic = false },
 				["typescriptDefaultImportName"] = { fg = c.fg_sidebar, italic = false },
 				["typescriptBlock"] = { fg = c.fg_sidebar, italic = false },
@@ -48,13 +47,13 @@ return {
 				["tsxIntrinsicTagName"] = { fg = c.red },
 				["tsxFragment"] = { fg = c.red },
 				["@tag.delimiter"] = { fg = c.red }, -- Default brackets to Red (HTML fallback)
-				["tsxCloseTag"] = { fg = c.red },
-				["tsxCloseString"] = { fg = c.red },
+				["tsxCloseTag"] = { fg = c.fg_gutter },
+				["tsxCloseString"] = { fg = c.fg_gutter },
 
-				-- 💙 COMPONENTS (teal)
+				-- 💙 COMPONENTS
 				["@tag"] = { fg = c.blue }, -- The Component Name (Bold for pop)
-				["tsxTagName"] = { fg = c.blue },
-				["tsxTag"] = { fg = c.red }, -- Opening tag container
+				["tsxTagName"] = { fg = c.hint },
+				["tsxTag"] = { fg = c.fg_gutter}, -- Opening tag container
 				["@tag.delimiter.tsx"] = { fg = c.blue }, -- Brackets for components
 				["@tag.tsx"] = { fg = c.blue },
 				["@punctuation.special.tsx"] = { fg = c.blue },
@@ -106,11 +105,6 @@ return {
 				-- Special case for TSX/React methods (like array.map, etc.)
 				["typescriptArrayMethod"] = { link = "@method" },
 				["@lsp.typemod.method.defaultLibrary.typescriptreact"] = { link = "@method" },
-
-				["@tag.html.red"] = { fg = c.red },
-				["@punctuation.bracket.tag.red"] = { fg = c.red },
-				["@constructor.teal"] = { fg = c.hint },
-				["@punctuation.bracket.tag.teal"] = { fg = c.hint },
 			}
 
 			for group, settings in pairs(jsx_hl) do
