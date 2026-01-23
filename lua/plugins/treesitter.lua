@@ -23,7 +23,6 @@ return { -- Highlight, edit, and navigate code
     },
     -- Autoinstall languages that are not installed
     auto_install = true,
-    sync_install = true,
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = { 'ruby' },
