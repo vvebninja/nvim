@@ -5,42 +5,52 @@ return {
 	opts = {
 		style = "night",
 		on_highlights = function(hl, c)
+			local ts = "typescript"
 			local jsx_hl = {
-				["@lsp.typemod.property.declaration.typescriptreact"] = { fg = c.blue2, italic = false },
-				["typescriptTypeBracket"] = { fg = c.blue2, italic = false },
-				["typescriptAliasKeyword"] = { fg = c.blue2, italic = false },
-				["typescriptObjectType"] = { fg = c.blue2, italic = false },
-				["typescriptObjectMember"] = { fg = c.blue2, italic = false },
-				["typescriptInterfaceKeyword"] = { fg = c.blue2, italic = false },
-				["typescriptCall"] = { fg = c.blue, italic = false },
-				["typescriptExport"] = { fg = c.purple, italic = false },
-				["typescriptConditional"] = { fg = c.purple, italic = false },
-				["typescriptParens"] = { fg = c.blue, italic = false },
 
-				["typescriptImport"] = { fg = c.blue2, italic = false },
-				["typescriptDefaultImportName"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptBlock"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptUnion"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptArrowFunc"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptFuncTypeArrow"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptTypeBlock"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptIdentifierName"] = { fg = c.fg_sidebar, italic = false },
-				["@lsp.type.parameter.typescriptreact"] = { fg = c.purple, italic = false },
+				["@lsp.type.member.typescriptreact"] = { fg = c.blue },
+				-- object property
+				["@lsp.type.property.typescriptreact"] = { fg = c.fg_sidebar },
 
-				["tsxRegion"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptBinaryOp"] = { fg = c.fg_sidebar, italic = false },
-				["@lsp.type.property.typescriptreact"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptBOMHistoryProp"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptDOMFormProp"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptDOMNodeProp"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptDOMDocProp"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptFuncCallArg"] = { fg = c.fg_sidebar, italic = false },
-				["@lsp.typemod.property.defaultLibrary.typescriptreact"] = { fg = c.fg_sidebar, italic = false },
-				["@lsp.mod.defaultLibrary.typescriptreact"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptPaymentShippingOptionProp"] = { fg = c.fg_sidebar, italic = false },
-				["tsxEscJs"] = { fg = c.fg_sidebar, italic = false },
-				["tsxEscapeJs"] = { fg = c.fg_sidebar, italic = false },
-				["typescriptComputedPropertyName"] = { fg = c.fg_sidebar, italic = false },
+				["@lsp.typemod.property.declaration.typescriptreact"] = { fg = c.blue2 },
+				["typescriptTypeBracket"] = { fg = c.blue2 },
+				["typescriptAliasKeyword"] = { fg = c.blue2 },
+				["typescriptObjectType"] = { fg = c.blue2 },
+				["typescriptObjectMember"] = { fg = c.blue2 },
+				["typescriptInterfaceKeyword"] = { fg = c.blue2 },
+				["typescriptCall"] = { fg = c.blue },
+				["typescriptExport"] = { fg = c.purple },
+				["typescriptConditional"] = { fg = c.purple },
+				["typescriptParens"] = { fg = c.blue },
+
+				["typescriptStatementKeyword"] = { fg = c.purple },
+				["typescriptNull"] = { fg = c.yellow },
+				["typescriptBoolan"] = { fg = c.yellow },
+
+				["typescriptImport"] = { fg = c.blue2 },
+				["typescriptDefaultImportName"] = { fg = c.fg_sidebar },
+				["typescriptBlock"] = { fg = c.fg_sidebar },
+				["typescriptUnion"] = { fg = c.fg_sidebar },
+				["typescriptArrowFunc"] = { fg = c.fg_sidebar },
+				["typescriptFuncTypeArrow"] = { fg = c.fg_sidebar },
+				["typescriptTypeBlock"] = { fg = c.fg_sidebar },
+				["typescriptIdentifierName"] = { fg = c.fg_sidebar },
+				["@lsp.type.parameter.typescriptreact"] = { fg = c.purple },
+
+				["tsxRegion"] = { fg = c.fg_sidebar },
+				["typescriptBinaryOp"] = { fg = c.fg_sidebar },
+				["typescriptBOMHistoryProp"] = { fg = c.fg_sidebar },
+				["typescriptBOMNavigatiorProp"] = { fg = c.red },
+				["typescriptDOMFormProp"] = { fg = c.fg_sidebar },
+				["typescriptDOMNodeProp"] = { fg = c.fg_sidebar },
+				["typescriptDOMDocProp"] = { fg = c.fg_sidebar },
+				["typescriptFuncCallArg"] = { fg = c.fg_sidebar },
+				["@lsp.typemod.property.defaultLibrary.typescriptreact"] = { fg = c.fg_sidebar },
+				["@lsp.mod.defaultLibrary.typescriptreact"] = { fg = c.blue },
+				["typescriptPaymentShippingOptionProp"] = { fg = c.fg_sidebar },
+				["tsxEscJs"] = { fg = c.fg_sidebar },
+				["tsxEscapeJs"] = { fg = c.fg_sidebar },
+				["typescriptComputedPropertyName"] = { fg = c.fg_sidebar },
 
 				-- 🍎 HTML / INTRINSIC (Red)
 				["@tag.builtin"] = { fg = c.red },
@@ -52,8 +62,8 @@ return {
 
 				-- 💙 COMPONENTS
 				["@tag"] = { fg = c.blue }, -- The Component Name (Bold for pop)
-				["tsxTagName"] = { fg = c.hint },
-				["tsxTag"] = { fg = c.fg_gutter}, -- Opening tag container
+				["tsxTagName"] = { fg = c.orange, bold = true },
+				["tsxTag"] = { fg = c.fg_gutter }, -- Opening tag container
 				["@tag.delimiter.tsx"] = { fg = c.blue }, -- Brackets for components
 				["@tag.tsx"] = { fg = c.blue },
 				["@punctuation.special.tsx"] = { fg = c.blue },
@@ -64,15 +74,11 @@ return {
 				["@variable.parameter"] = { fg = c.magenta }, -- Kept magenta to separate logic from data
 				["@variable.member"] = { fg = c.blue1 }, -- Object properties
 
-				["typescriptProp"] = { fg = c.error }, -- 'const', 'let', 'var'
-				["tsxEscJs"] = { fg = c.grey }, -- 'const', 'let', 'var'
-				-- 🔑 KEYWORDS (Purple)
-				["@keyword"] = { fg = c.purple, italic = false },
-				["typescriptVariable"] = { fg = c.purple }, -- 'const', 'let', 'var'
-
-				-- 🧪 ATTRIBUTES (Orange)
-				["tsxAttrib"] = { fg = c.yellow },
-				["@tag.attribute"] = { fg = c.yellow },
+				-- ["typescriptProp"] = { fg = c.error }, -- 'const', 'let', 'var'
+				["@keyword"] = { fg = c.purple },
+				["typescriptVariable"] = { fg = c.cyan },
+				["tsxAttrib"] = { fg = c.orange },
+				["@tag.attribute"] = { fg = c.orange },
 
 				-- 📍 PUNCTUATION & SYMBOLS
 				["@punctuation.bracket"] = { fg = c.purple }, -- { } [ ] ( )
@@ -94,8 +100,8 @@ return {
 				["@function"] = { fg = c.blue },
 				["@function.builtin"] = { fg = c.blue },
 				["@function.call"] = { fg = c.blue },
-				["@method"] = { fg = c.blue, italic = true },
-				["@method.call"] = { fg = c.blue, italic = true },
+				["@method"] = { fg = c.blue },
+				["@method.call"] = { fg = c.blue },
 
 				-- 🛡️ LSP SYNC: Link LSP tokens to the Tree-sitter source
 				-- This is Low Coupling: change @function, and the LSP follows automatically.
@@ -117,31 +123,11 @@ return {
 		vim.cmd.colorscheme("tokyonight-night")
 	end,
 }
-
--- return {
--- 	"Mofiqul/vscode.nvim",
--- 	lazy = false,
--- 	priority = 1000,
--- 	config = function()
--- 		local vscode = require("vscode")
---
--- 		vscode.setup({
--- 			style = "dark",
--- 			terminal_colors = true,
--- 			-- Устанавливаем твой любимый цвет на фон
--- 			color_overrides = {
--- 				-- vscBack = '#1E1E2E',
--- 			},
--- 			group_overrides = {
--- 				["tsxTagName"] = { fg = "#4ec9b0", bold = false },
--- 				["tsxCloseString"] = { fg = "#808080" },
--- 				["typescriptBlock"] = { fg = "#586e75" },
--- 				-- Если переменные base1 и cyan не определены выше в твоем файле,
--- 				-- лучше заменить их на HEX, иначе Neovim выдаст ошибку.
--- 				-- ['@tag.delimiter'] = { fg = '#839496' },
--- 				-- ['typescriptArrowFunc'] = { fg = '#00bcd4' },
--- 			},
--- 		})
--- 		vim.cmd.colorscheme("vscode")
--- 	end,
--- }
+-- -- vscBack = '#1E1E2E',
+-- ["tsxTagName"] = { fg = "#4ec9b0", bold = false },
+-- ["tsxCloseString"] = { fg = "#808080" },
+-- ["typescriptBlock"] = { fg = "#586e75" },
+-- -- Если переменные base1 и cyan не определены выше в твоем файле,
+-- -- лучше заменить их на HEX, иначе Neovim выдаст ошибку.
+-- -- ['@tag.delimiter'] = { fg = '#839496' },
+-- -- ['typescriptArrowFunc'] = { fg = '#00bcd4' },
