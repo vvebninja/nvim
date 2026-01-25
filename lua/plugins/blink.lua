@@ -27,27 +27,18 @@ return {
 		completion = {
 			menu = {
 				border = "rounded",
+				max_width = 20,
 				draw = {
-					columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
-					components = {
-						kind_icon = {
-							ellipsis = false,
-							text = function(ctx)
-								-- Безопасное получение иконки
-								local lspkind = require("lspkind")
-								local icon = lspkind.symbol_map[ctx.kind] or " "
-								return icon .. " "
-							end,
-							highlight = function(ctx)
-								return "BlinkCmpKind" .. ctx.kind
-							end,
-						},
-					},
+					columns = { { gap = 1, "kind_icon" }, { "label", "label_description", gap = 1 } },
 				},
 			},
 			documentation = {
 				auto_show = true,
-				window = { border = "rounded" },
+				window = {
+					border = "rounded",
+					min_width = 20,
+					max_width = 60,
+				},
 			},
 		},
 		fuzzy = { implementation = "prefer_rust_with_warning" },

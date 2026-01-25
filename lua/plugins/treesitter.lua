@@ -19,7 +19,7 @@ return { -- Highlight, edit, and navigate code
       'typescript',
       'tsx',
       'javascript',
-      'regexp',
+      'regex',
     },
     -- Autoinstall languages that are not installed
     auto_install = true,
