@@ -14,8 +14,6 @@ return {
 
 		-- Allows extra capabilities provided by blink.cmp
 		"saghen/blink.cmp",
-
-		"b0o/SchemaStore.nvim",
 	},
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -89,7 +87,6 @@ return {
 
 			float = {
 				border = "rounded",
-				-- max_width = 80,
 				header = "",
 			},
 			underline = { severity = vim.diagnostic.severity.ERROR },
@@ -112,27 +109,16 @@ return {
 
 		local servers = {
 			tailwindcss = {},
-			cssls = {
-				filetypes = { "css", "scss" },
-			},
-
-			css_variables = {
-				filetypes = { "css", "scss" },
-			},
-
+			cssls = { filetypes = { "css", "scss" } },
+			css_variables = { filetypes = { "css", "scss" } },
 			jsonls = {
 				settings = {
 					json = {
-						schemas = require("schemastore").json.schemas(),
 						validate = { enable = true },
 					},
 				},
 			},
-
 			lua_ls = {
-				-- cmd = { ... },
-				-- filetypes = { ... },
-				-- capabilities = {},
 				settings = {
 					Lua = {
 						completion = {
@@ -145,29 +131,16 @@ return {
 			},
 		}
 
-		-- Ensure the servers and tools above are installed
-		--
-		-- To check the current status of installed tools and/or manually install
-		-- other tools, you can run
-		--    :Mason
-		--
-		-- You can press `g?` for help in this menu.
-		--
-		-- `mason` had to be setup earlier: to configure its options see the
-		-- `dependencies` table for `nvim-lspconfig` above.
-		--
-		-- You can add other tools here that you want Mason to install
-		-- for you, so that they are available from within Neovim.
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
-			"stylua", -- Used to format Lua code
-			"prettierd", -- Used to format Lua code
-			"eslint_d", -- Used to format Lua code
+			"stylua",
+			"prettierd",
+			"eslint_d",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({
-			ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+			ensure_installed = {},
 			automatic_installation = false,
 			handlers = {
 				function(server_name)

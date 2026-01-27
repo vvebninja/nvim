@@ -6,6 +6,10 @@ return {
 	},
 	opts = {
 		lsp = {
+			signature = {
+				enabled = false, -- Твоя настройка верна
+				auto_open = { enabled = false }, -- Добавь это на всякий случай
+			},
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 				["vim.lsp.util.stylize_markdown"] = true,
@@ -18,6 +22,9 @@ return {
 			long_message_to_split = false, -- long messages will be sent to a split
 			inc_rename = true, -- enables an input dialog for inc-rename.nvim
 			lsp_doc_border = true, -- add a border to hover docs and signature help
+			border = {
+				style = "rounded", -- Красивые скругленные углы
+			},
 		},
 	},
 }

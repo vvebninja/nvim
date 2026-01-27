@@ -5,7 +5,7 @@ return {
 	---@type snacks.Config
 	opts = {
 		terminal = { enabled = true },
-		notifier = { enabled = true },
+		notifier = { enabled = true, style = "fancy" },
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		statuscolumn = { enabled = true },

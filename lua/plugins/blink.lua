@@ -4,22 +4,34 @@ return {
 	build = "cargo build --release",
 	dependencies = {
 		"L3MON4D3/LuaSnip",
-		"rafamadriz/friendly-snippets", -- ДОБАВЬ ЭТО, чтобы сниппеты были в системе
+		"rafamadriz/friendly-snippets",
 		"folke/lazydev.nvim",
 		"onsails/lspkind.nvim",
+		"saghen/blink.compat",
+		"giuxtaposition/blink-cmp-copilot",
 	},
 	opts = {
 		keymap = {
 			preset = "enter",
-			["<Tab>"] = { "select_next", "fallback" },
-			["<S-Tab>"] = { "select_prev", "fallback" },
 		},
+		signature = { enabled = false },
 		appearance = {
 			use_nvim_cmp_as_default = true,
 			nerd_font_variant = "mono",
+			kind_icons = {
+				Copilot = "",
+			},
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer", "copilot" },
+			providers = {
+				copilot = {
+					name = "copilot",
+					module = "blink-cmp-copilot",
+					score_offset = 100,
+					async = true,
+				},
+			},
 		},
 		snippets = {
 			preset = "luasnip",
@@ -27,10 +39,6 @@ return {
 		completion = {
 			menu = {
 				border = "rounded",
-				max_width = 20,
-				draw = {
-					columns = { { gap = 1, "kind_icon" }, { "label", "label_description", gap = 1 } },
-				},
 			},
 			documentation = {
 				auto_show = true,

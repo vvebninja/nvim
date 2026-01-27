@@ -24,7 +24,7 @@ vim.o.list = false
 vim.opt.listchars:remove("tab")
 vim.o.inccommand = "split"
 vim.o.cursorline = true
-vim.o.scrolloff = 0
+vim.o.scrolloff = 5
 vim.o.confirm = true
 vim.o.expandtab = true
 vim.o.tabstop = 2
