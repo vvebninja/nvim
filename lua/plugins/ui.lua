@@ -1,16 +1,17 @@
 return {
   {
-    "folke/noice.nvim",
+    "nvim-treesitter/nvim-treesitter",
     opts = {
-      presets = {
-        lsp_doc_border = true, -- Додає рамку до вікон документації (hover)
+      ensure_installed = {
+        "tsx",
+        "typescript",
+        "javascript",
+        "css", -- Додай сюди css
+        "html",
+        "json",
+        "lua",
+        "bash",
       },
-    },
-  },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    opts = {
-      file_types = { "markdown", "Avante", "noice" }, -- Додаємо noice для hover
     },
   },
 }

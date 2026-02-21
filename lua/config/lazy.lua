@@ -18,6 +18,11 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.tailwind" },
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.linting.eslint" },
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -51,3 +56,8 @@ require("lazy").setup({
     },
   },
 })
+
+vim.opt.guicursor = "a:block,n:block-Cursor-blinkon0,i:block-iCursor-blinkon0,r:block-rCursor-blinkon0"
+vim.cmd("highlight Cursor guifg=NONE guibg=#FF284D")
+vim.cmd("highlight iCursor guifg=NONE guibg=#00ff00")
+vim.cmd("highlight rCursor guifg=NONE guibg=#FF0000")

@@ -1,0 +1,41 @@
+return {
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*", -- Use "v1.*" for latest stable, or "*" for latest commit
+    config = function()
+      require("toggleterm").setup({
+        -- General settings for all terminals
+        size = 40, -- Default size for horizontal/vertical if not overridden by specific mapping
+        open_mapping = [[<leader>t]], -- This will be mapped to the default (index 1) float terminal
+        hide_numbers = true,
+        shade_terminals = true,
+        start_in_insert = true,
+        insert_mappings = false,
+        terminal_mappings = true,
+        persist_size = true, -- Remember the size of the terminal when hidden
+        direction = "float", -- Default direction for the 'open_mapping' and if no direction is specified
+
+        -- Default float options (will apply to <leader>t)
+        float_opts = {
+          border = "curved",
+          width = 140, -- Default width for floating terminals
+          height = 25, -- Default height for floating terminals
+        },
+        close_on_exit = true, -- Close the terminal window when the process exits
+      })
+
+      -- function _G.set_terminal_keymaps()
+      --   local opts = { buffer = 0 }
+      --   vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts) -- Вихід по одному Esc
+      --   vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts) -- Вихід через jk
+      --   vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+      --   vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+      --   vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+      --   vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+      -- end
+
+      -- Автоматично вмикати ці мапінги лише для термінала
+      -- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+    end,
+  },
+}
