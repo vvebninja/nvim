@@ -6,7 +6,7 @@ return {
         "tsx",
         "typescript",
         "javascript",
-        "css", -- Додай сюди css
+        "css",
         "html",
         "json",
         "lua",
