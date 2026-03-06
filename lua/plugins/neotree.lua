@@ -1,16 +1,13 @@
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = {
-        filtered_items = {
-          visible = true,
-          hide_dotfiles = false,
-        },
-        follow_current_file = {
-          enabled = true,
-        },
-      },
-    },
+    "folke/edgy.nvim",
+    optional = true,
+    opts = function(_, opts)
+      for _, section in ipairs(opts.left or {}) do
+        if section.ft == "neo-tree" then
+          section.size = { width = 55 }
+        end
+      end
+    end,
   },
 }
